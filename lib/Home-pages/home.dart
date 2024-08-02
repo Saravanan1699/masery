@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(newWishlistStatus
-                ? 'Added to wishlist'
+                ? 'Added to wishlists'
                 : 'Removed from wishlist'),
           ),
         );
@@ -268,6 +268,48 @@ class _HomePageState extends State<HomePage> {
         actions: [
           Row(
             children: [
+              // Notification Icon
+              GestureDetector(
+                onTap: () {
+                  // Navigate to Notifications page or perform desired action
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => NotificationsPage()),
+                  // );
+                },
+                child: Stack(
+                  children: [
+                    Icon(Icons.circle_notifications_sharp,color: Colors.blue,),
+                    // if (totalNotifications > 0)
+                      Positioned(
+                        right: 0,
+                        child: Container(
+                          padding: EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          constraints: BoxConstraints(
+                            minWidth: 10,
+                            minHeight: 10,
+                          ),
+                          // child: Text(
+                          //   '$totalNotifications',
+                          //   style: TextStyle(
+                          //     color: Colors.white,
+                          //     fontSize: 10,
+                          //     fontWeight: FontWeight.bold,
+                          //   ),
+                          //   textAlign: TextAlign.center,
+                          // ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 10),
+
+              // Wishlist Icon
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -288,8 +330,8 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           constraints: BoxConstraints(
-                            minWidth: 16,
-                            minHeight: 16,
+                            minWidth: 12,
+                            minHeight: 12,
                           ),
                           child: Text(
                             '$totalWishItems',
@@ -305,9 +347,9 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              SizedBox(
-                width: 5,
-              ),
+              SizedBox(width: 5),
+
+              // Profile Icon
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
@@ -326,7 +368,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Column(
+
+        body: Column(
         children: [
           // Always show search field
           Padding(
